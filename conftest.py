@@ -8,9 +8,9 @@ from selenium.webdriver.firefox.service import Service as FService
 
 
 def pytest_addoption(parser):
-    parser.addoption('--language', action='store', default="ru",
+    parser.addoption('--language', action='store', default="en",
                      help="Choose language from the list: "
-                          "ar, ca, cs, da, de, en-gb, el, es, fi, fr,it, ko, nl, pl, pt, pt-br, ro, ru, sk, uk, zh-hans")
+                          "ar, ca, cs, da, de, en-gb, en, el, es, fi, fr,it, ko, nl, pl, pt, pt-br, ro, ru, sk, uk, zh-hans")
     parser.addoption('--browser_name', action='store', default="chrome",
                      help="Choose browser: chrome or firefox")
 
@@ -20,7 +20,7 @@ def browser(request):
     browser_language = request.config.getoption("language")
     # Проверяем дозволенные на сайте языки
     logging.info("checking laguage..")
-    if browser_language in ["ar", "ca", "cs", "da", "de", "en-gb", "el", "es", "fi", "fr", "it", "ko", "nl", "pl", "pt",
+    if browser_language in ["ar", "ca", "cs", "da", "de", "en-gb", "en", "el", "es", "fi", "fr", "it", "ko", "nl", "pl", "pt",
                             "pt-br", "ro", "ru", "sk", "uk", "zh-hans"]:
         logging.info("start chrome browser for test..")
     else:
