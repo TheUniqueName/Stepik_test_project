@@ -29,3 +29,11 @@ class ProductPage(BasePage):
             EC.presence_of_element_located(ProductPageLocators.ALERT_INFO_PRICE)
         ).text
         return product_price_alert
+
+    def should_not_be_success_message(self):
+        assert self.is_not_element_present(*ProductPageLocators.SUCCESS_MESSAGE), \
+            "Success message is presented, but should not be"
+
+    def is_disappeared(self):
+        assert self.is_not_element_present(*ProductPageLocators.SUCCESS_MESSAGE), \
+            "Success message have not disappered, but should be"
