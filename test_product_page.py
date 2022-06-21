@@ -27,6 +27,7 @@ def test_guest_can_add_product_to_basket(browser, link):
     assert product_name_h1 == product_name_alert, f"{product_name_h1} != {product_name_alert}"
     assert product_page_price == product_price_alert, f"{product_page_price} != {product_price_alert}"
 
+
 @pytest.mark.xfail
 def test_guest_cant_see_success_message_after_adding_product_to_basket(browser):
     link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/"
@@ -41,6 +42,7 @@ def test_guest_cant_see_success_message(browser):
     page = ProductPage(browser, link)
     page.open()
     page.should_not_be_success_message()
+
 
 @pytest.mark.xfail
 def test_message_disappeared_after_adding_product_to_basket(browser):
