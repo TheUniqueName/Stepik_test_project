@@ -1,4 +1,5 @@
 from .pages.product_page import ProductPage
+from .pages.login_page import LoginPage
 import pytest
 
 
@@ -26,6 +27,15 @@ def test_guest_can_add_product_to_basket(browser, link):
     product_price_alert = page.get_product_price_alert(browser)
     assert product_name_h1 == product_name_alert, f"{product_name_h1} != {product_name_alert}"
     assert product_page_price == product_price_alert, f"{product_page_price} != {product_price_alert}"
+
+
+def test_guest_can_go_to_login_page_from_product_page(browser):
+    link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=newYear2019"
+    page = ProductPage(browser, link)
+    page.open()
+    page.go_to_login_page()
+    login_page = LoginPage(browser, browser.current_url)
+    login_page.should_be_login_url(browser)
 
 
 @pytest.mark.xfail
