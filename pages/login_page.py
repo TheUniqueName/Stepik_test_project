@@ -8,8 +8,8 @@ class LoginPage(BasePage):
         self.should_be_login_form()
         self.should_be_register_form()
 
-    def should_be_login_url(self, browser):
-        substr_position = browser.current_url.find(LoginPageLocators.LOGIN_LINK_SUBSTRING)
+    def should_be_login_url(self):
+        substr_position = self.browser.current_url.find(LoginPageLocators.LOGIN_LINK_SUBSTRING)
         assert substr_position > -1, f"There is no '{LoginPageLocators.LOGIN_LINK_SUBSTRING}' substring in current URL"
 
     def should_be_login_form(self):
