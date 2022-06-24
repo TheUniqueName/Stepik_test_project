@@ -6,6 +6,8 @@ from webdriver_manager.firefox import GeckoDriverManager
 from selenium.webdriver.chrome.service import Service as GService
 from selenium.webdriver.firefox.service import Service as FService
 
+# Вебдрайвер менеджер используется для удобства. Если его нет и ставить не хочется, то можно использовать импорт от своих тестов с путями к вебдрайверу
+
 
 def pytest_addoption(parser):
     parser.addoption('--language', action='store', default="en",
