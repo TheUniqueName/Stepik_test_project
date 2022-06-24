@@ -14,8 +14,8 @@ class ProductPage(BasePage):
         product_name_h1 = self.browser.find_element(*ProductPageLocators.PRODUCT_NAME_H1).text
         return product_name_h1
 
-    def get_product_name_alert(self, browser):
-        product_name_alert = WebDriverWait(browser, 15).until(
+    def get_product_name_alert(self):
+        product_name_alert = WebDriverWait(self.browser, 15).until(
             EC.presence_of_element_located(ProductPageLocators.ALERT_SUCCESS_PRICE)
         ).text
         return product_name_alert
@@ -24,8 +24,8 @@ class ProductPage(BasePage):
         product_page_price = self.browser.find_element(*ProductPageLocators.PRODUCT_PAGE_PRICE).text
         return product_page_price
 
-    def get_product_price_alert(self, browser):
-        product_price_alert = WebDriverWait(browser, 15).until(
+    def get_product_price_alert(self):
+        product_price_alert = WebDriverWait(self.browser, 15).until(
             EC.presence_of_element_located(ProductPageLocators.ALERT_INFO_PRICE)
         ).text
         return product_price_alert
