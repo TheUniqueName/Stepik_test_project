@@ -24,8 +24,8 @@ class LoginPage(BasePage):
         email = email or (str(time.time()) + "@fakemail.org")  # Если в качестве email передана пустая строка, то генерируем email сами
         password = password or str(time.time())  # Если в качестве password передана пустая строка, то генерируем password сами
         email_input = self.browser.find_element(*LoginPageLocators.REGISTER_FORM_EMAIL)
-        email_input.send_keys(email)
+        email_input.send_keys(email)  # Заполняем емейл
         password_1_input = self.browser.find_element(*LoginPageLocators.REGISTER_FORM_PASSWORD)
-        password_1_input.send_keys(password)
+        password_1_input.send_keys(password)  # Заполняем пароль
         password_2_input = self.browser.find_element(*LoginPageLocators.REGISTER_FORM_PASSWORD_CONFIRM)
-        password_2_input.send_keys(password, Keys.RETURN)
+        password_2_input.send_keys(password, Keys.RETURN)  # Заполняем подтверждение пароля и жмем на Return, т.е. на ненамовский Enter

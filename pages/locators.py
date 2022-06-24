@@ -18,8 +18,8 @@ class LoginPageLocators:
 class ProductPageLocators:
     ADD_TO_BUSKET_BUTTON = (By.CSS_SELECTOR, "#add_to_basket_form button")
     PRODUCT_NAME_H1 = (By.TAG_NAME, "h1")
-    PRODUCT_PAGE_PRICE = (By.CSS_SELECTOR, ".price_color")
-    ALERT_SUCCESS_PRICE = (By.CSS_SELECTOR, "#messages .alert-success:first-child strong")
+    PRODUCT_PAGE_PRICE = (By.CSS_SELECTOR, ".product_main .price_color")
+    ALERT_SUCCESS_NAME = (By.CSS_SELECTOR, "#messages .alert-success:first-child strong")
     ALERT_INFO_PRICE = (By.CSS_SELECTOR, "#messages .alert-info strong")
     SUCCESS_MESSAGE = (By.CSS_SELECTOR, "#messages .alert-success")
 

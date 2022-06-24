@@ -33,14 +33,14 @@ def browser(request):
     if browser_name == "chrome":
         logging.info("start chrome browser for test..")
         option = webdriver.ChromeOptions()
-        # option.add_argument("--headless")
+        # option.add_argument("--headless")  # Можно раскомментировать эту строчку, если нужно, чтобы браузер запускался в безголовом режиме и запуски были не видны
         option.add_argument(f"--lang={browser_language}")
         option.add_argument("--disable-gpu")
         browser = webdriver.Chrome(service=GService(ChromeDriverManager().install()), options=option)
     elif browser_name == "firefox":
         logging.info("start firefox browser for test..")
         option = webdriver.FirefoxOptions()
-        # option.add_argument("--headless")
+        # option.add_argument("--headless")  # Можно раскомментировать эту строчку, если нужно, чтобы браузер запускался в безголовом режиме и запуски были не видны
         option.add_argument("--disable-gpu")
         firefox_profile = webdriver.FirefoxProfile()
         firefox_profile.set_preference("intl.accept_languages", browser_language)

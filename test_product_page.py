@@ -10,22 +10,17 @@ class TestUserAddToBasketFromProductPage:
         link = "http://selenium1py.pythonanywhere.com/accounts/login/"
         login_page = LoginPage(browser, link)
         login_page.open()
-        login_page.register_new_user('', '')
+        login_page.register_new_user('', '')  # При желании можем передать конкретный логин и пароль. Если оставить строки пустыми, то логин и пароль будут генерироваться
         login_page.should_be_authorized_user()
 
+    @pytest.mark.need_review
     def test_user_can_add_product_to_basket(self, browser):
         link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/"
         page = ProductPage(browser, link)
         page.open()
-        product_name_h1 = page.get_product_name_h1()
-        product_page_price = page.get_product_page_price()
-
-        page.add_to_basket()
-
-        product_name_alert = page.get_product_name_alert()
-        product_price_alert = page.get_product_price_alert()
-        assert product_name_h1 == product_name_alert, f"{product_name_h1} != {product_name_alert}"
-        assert product_page_price == product_price_alert, f"{product_page_price} != {product_price_alert}"
+        page.add_to_basket()  # Добавляем товар в корзину
+        page.product_names_should_match()  # Сравниваем названия продуктов
+        page.product_prices_should_match()  # Сравниваем цены продуктов
 
     def test_user_cant_see_success_message(self, browser):
         link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/"
@@ -34,6 +29,7 @@ class TestUserAddToBasketFromProductPage:
         page.should_not_be_success_message()
 
 
+@pytest.mark.need_review
 @pytest.mark.parametrize('link', ["http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer0",
                                   "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer1",
                                   "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer2",
@@ -48,18 +44,13 @@ def test_guest_can_add_product_to_basket(browser, link):
     link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=newYear2019"
     page = ProductPage(browser, link)
     page.open()
-    product_name_h1 = page.get_product_name_h1()
-    product_page_price = page.get_product_page_price()
-
     page.add_to_basket()
     page.solve_quiz_and_get_code()
-
-    product_name_alert = page.get_product_name_alert()
-    product_price_alert = page.get_product_price_alert()
-    assert product_name_h1 == product_name_alert, f"{product_name_h1} != {product_name_alert}"
-    assert product_page_price == product_price_alert, f"{product_page_price} != {product_price_alert}"
+    page.product_names_should_match()
+    page.product_prices_should_match()
 
 
+@pytest.mark.need_review
 def test_guest_can_go_to_login_page_from_product_page(browser):
     link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=newYear2019"
     page = ProductPage(browser, link)
@@ -70,6 +61,7 @@ def test_guest_can_go_to_login_page_from_product_page(browser):
 
 
 @pytest.mark.xfail
+@pytest.mark.need_review
 def test_guest_cant_see_success_message_after_adding_product_to_basket(browser):
     link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/"
     page = ProductPage(browser, link)
